@@ -1,0 +1,41 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "D:\iverilog\lib\ivl\system.vpi";
+:vpi_module "D:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "D:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "D:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "D:\iverilog\lib\ivl\va_math.vpi";
+S_000001eb615e5e80 .scope module, "testbench" "testbench" 2 1;
+ .timescale 0 0;
+v000001eb615e61a0_0 .var "A", 3 0;
+v000001eb615e6240_0 .var "B", 3 0;
+v000001eb6152be30_0 .net "equal", 0 0, L_000001eb6152bed0;  1 drivers
+S_000001eb615e6010 .scope module, "uut" "four_bit_comparator" 2 5, 3 1 0, S_000001eb615e5e80;
+ .timescale 0 0;
+    .port_info 0 /INPUT 4 "A";
+    .port_info 1 /INPUT 4 "B";
+    .port_info 2 /OUTPUT 1 "equal";
+v000001eb615b3290_0 .net "A", 3 0, v000001eb615e61a0_0;  1 drivers
+v000001eb615b2eb0_0 .net "B", 3 0, v000001eb615e6240_0;  1 drivers
+v000001eb615280e0_0 .net "equal", 0 0, L_000001eb6152bed0;  alias, 1 drivers
+L_000001eb6152bed0 .cmp/eq 4, v000001eb615e61a0_0, v000001eb615e6240_0;
+    .scope S_000001eb615e5e80;
+T_0 ;
+    %vpi_call 2 12 "$display", "A    B    | Equal" {0 0 0};
+    %vpi_call 2 13 "$monitor", "%b %b |   %b", v000001eb615e61a0_0, v000001eb615e6240_0, v000001eb6152be30_0 {0 0 0};
+    %pushi/vec4 1, 0, 4;
+    %store/vec4 v000001eb615e61a0_0, 0, 4;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v000001eb615e6240_0, 0, 4;
+    %delay 10, 0;
+    %vpi_call 2 18 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    ".\tb2.v";
+    ".\four_bit_comparator.v";
